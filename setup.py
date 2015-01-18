@@ -33,7 +33,7 @@ setup(
     keywords=['sphinx', 'testing'],
     author='Takeshi Komiya',
     author_email='i.tkomiya at gmail.com',
-    url='http://bitbucket.org/tk0miya/sphinx-testing',
+    url='https://github.com/sphinx-doc/sphinx-testing',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     include_package_data=True,
