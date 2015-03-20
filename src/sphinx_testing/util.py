@@ -27,7 +27,7 @@ class TestApp(Sphinx):
                  buildername='html', confoverrides=None, status=None,
                  warning=None, freshenv=False, warningiserror=False, tags=None,
                  copy_srcdir_to_tmpdir=False, create_new_srcdir=False,
-                 cleanup_on_errors=True):
+                 cleanup_on_errors=True, verbosity=0, parallel=0):
         self.cleanup_trees = []
         self.cleanup_on_errors = cleanup_on_errors
 
@@ -73,7 +73,8 @@ class TestApp(Sphinx):
 
         Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
                         buildername, confoverrides, status,
-                        warning, freshenv, warningiserror, tags)
+                        warning, freshenv, warningiserror, tags,
+                        verbosity, parallel)
 
     def __repr__(self):
         classname = self.__class__.__name__
