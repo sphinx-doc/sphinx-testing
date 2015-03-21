@@ -1,6 +1,10 @@
 Changelog
 ==========
 
+0.7.0 (2015-03-21)
+-------------------
+- PR#1 Enable verbosity and parallel arguments.
+
 0.6.0 (2014-10-17)
 -------------------
 - Add python 3.2 support (with Sphinx < 1.3)
