@@ -11,6 +11,7 @@ env:
     - TOXENV=sphinx10
     - TOXENV=sphinx11
     - TOXENV=sphinx12
+    - TOXENV=coverage
 
 install: pip install docutils tox
 script: tox
