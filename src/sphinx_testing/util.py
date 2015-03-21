@@ -12,6 +12,7 @@ from six import StringIO
 from functools import wraps
 from textwrap import dedent
 
+from sphinx import __version__ as sphinx_version
 from sphinx.application import Sphinx
 from sphinx_testing.path import path
 from sphinx_testing.tmpdir import mkdtemp
@@ -71,10 +72,15 @@ class TestApp(Sphinx):
         if warning is None:
             warning = StringIO()
 
-        Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
-                        buildername, confoverrides, status,
-                        warning, freshenv, warningiserror, tags,
-                        verbosity, parallel)
+        if sphinx_version < '1.3':
+            Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
+                            buildername, confoverrides, status,
+                            warning, freshenv, warningiserror, tags)
+        else:
+            Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
+                            buildername, confoverrides, status,
+                            warning, freshenv, warningiserror, tags,
+                            verbosity, parallel)
 
     def __repr__(self):
         classname = self.__class__.__name__
