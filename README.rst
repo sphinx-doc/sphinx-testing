@@ -4,13 +4,19 @@ sphinx-testing
 
 `sphinx-testing` provides testing utility classes and functions for Sphinx extensions.
 
-.. image:: https://pypip.in/v/sphinx-testing/badge.png
-   :target: https://pypi.python.org/pypi/sphinx-testing/
-   :alt: Latest PyPI version
+.. image:: https://travis-ci.org/sphinx-doc/sphinx-testing.svg?branch=master
+   :target: https://travis-ci.org/sphinx-doc/WebDispatch
+
+.. image:: https://coveralls.io/repos/sphinx-doc/sphinx-testing/badge.png?branch=master
+   :target: https://coveralls.io/r/sphinx-doc/sphinx-testing?branch=master
 
 .. image:: https://pypip.in/d/sphinx-testing/badge.png
    :target: https://pypi.python.org/pypi/sphinx-testing/
    :alt: Number of PyPI downloads
+
+.. image:: https://pypip.in/wheel/sphinx-testing/badge.png
+   :target: https://pypi.python.org/pypi/sphinx-testing/
+   :alt: Wheel Status
 
 Setup
 =====
