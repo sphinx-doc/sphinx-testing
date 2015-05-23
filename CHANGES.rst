@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+0.7.1 (2015-05-24)
+-------------------
+- Fix bug:
+
+  - Fix write_docstring should refer master_doc and source_suffix
+
 0.7.0 (2015-03-21)
 -------------------
 - PR#1 Enable verbosity and parallel arguments.
