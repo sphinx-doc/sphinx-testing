@@ -5,7 +5,7 @@ sphinx-testing
 `sphinx-testing` provides testing utility classes and functions for Sphinx extensions.
 
 .. image:: https://travis-ci.org/sphinx-doc/sphinx-testing.svg?branch=master
-   :target: https://travis-ci.org/sphinx-doc/WebDispatch
+   :target: https://travis-ci.org/sphinx-doc/sphinx-testing
 
 .. image:: https://coveralls.io/repos/sphinx-doc/sphinx-testing/badge.png?branch=master
    :target: https://coveralls.io/r/sphinx-doc/sphinx-testing?branch=master
