@@ -159,11 +159,18 @@ class TestSphinxTesting(unittest.TestCase):
 
         self.assertFalse(tmpdir.exists())
 
-    def test_with_app_write_docstring1(self):
-        srcdir = path(__file__).dirname() / 'examples'
+    def test_with_app_write_docstring(self):
+        @with_app(create_new_srcdir=True, write_docstring=True)
+        def execute(app, status, warning):
+            """ Hello world """
+            content = (app.srcdir / 'contents.rst').read_text()
+            self.assertEqual('Hello world ', content)
 
-        @with_app(srcdir=srcdir, copy_srcdir_to_tmpdir=True,
-                  write_docstring=True)
+        execute()
+
+    def test_with_app_write_docstring_with_master_doc(self):
+        @with_app(create_new_srcdir=True, write_docstring=True,
+                  confoverrides={'master_doc': 'index'})
         def execute(app, status, warning):
             """ Hello world """
             content = (app.srcdir / 'index.rst').read_text()
@@ -171,11 +178,18 @@ class TestSphinxTesting(unittest.TestCase):
 
         execute()
 
-    def test_with_app_write_docstring2(self):
-        srcdir = path(__file__).dirname() / 'examples'
+    def test_with_app_write_docstring_with_source_suffix(self):
+        @with_app(create_new_srcdir=True, write_docstring=True,
+                  confoverrides={'source_suffix': '.txt'})
+        def execute(app, status, warning):
+            """ Hello world """
+            content = (app.srcdir / 'contents.txt').read_text()
+            self.assertEqual('Hello world ', content)
 
-        @with_app(srcdir=srcdir, copy_srcdir_to_tmpdir=True,
-                  write_docstring='hello.rst')
+        execute()
+
+    def test_with_app_write_docstring_by_name(self):
+        @with_app(create_new_srcdir=True, write_docstring='hello.rst')
         def execute(app, status, warning):
             """ Hello world """
             content = (app.srcdir / 'hello.rst').read_text()

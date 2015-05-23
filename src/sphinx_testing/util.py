@@ -113,12 +113,17 @@ class with_app(object):
         if self._write_docstring:
             self.sphinxkwargs['copy_srcdir_to_tmpdir'] = True
 
-    def write_docstring(self, basedir, docstring):
+    def write_docstring(self, app, docstring):
         if self._write_docstring:
             if self._write_docstring is True:
-                filename = basedir / 'index.rst'
+                if isinstance(app.config.source_suffix, (list, tuple)):
+                    source_suffix = app.config.source_suffix[0]
+                else:
+                    source_suffix = app.config.source_suffix
+                basename = '%s%s' % (app.config.master_doc, source_suffix)
+                filename = app.srcdir / basename
             else:
-                filename = basedir / self._write_docstring
+                filename = app.srcdir / self._write_docstring
 
             filename.write_text(dedent(docstring), encoding='utf-8')
 
@@ -132,7 +137,7 @@ class with_app(object):
                 status = sphinxkwargs.setdefault('status', StringIO())
                 warning = sphinxkwargs.setdefault('warning', StringIO())
                 app = TestApp(*self.sphinxargs, **sphinxkwargs)
-                self.write_docstring(app.srcdir, func.__doc__)
+                self.write_docstring(app, func.__doc__)
 
                 func(*(args + (app, status, warning)), **kwargs)
             except Exception as _exc:
