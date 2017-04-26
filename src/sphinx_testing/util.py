@@ -87,13 +87,14 @@ class TestApp(Sphinx):
         return '<%s buildername=%r>' % (classname, self.builder.name)
 
     def cleanup(self, error=None):
-        from sphinx.theming import Theme
-        from sphinx.ext.autodoc import AutoDirective
-
         if error and self.cleanup_on_errors is False:
             return
 
-        Theme.themes.clear()
+        if sphinx_version < '1.6':
+            from sphinx.theming import Theme
+            Theme.themes.clear()
+
+        from sphinx.ext.autodoc import AutoDirective
         AutoDirective._registry.clear()
         for tree in self.cleanup_trees:
             shutil.rmtree(tree, True)
