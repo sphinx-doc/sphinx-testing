@@ -40,7 +40,7 @@ setup(
     classifiers=classifiers,
     keywords=['sphinx', 'testing'],
     author='Takeshi Komiya',
-    author_email='i.tkomiya at gmail.com',
+    author_email='i.tkomiya@gmail.com',
     url='https://github.com/sphinx-doc/sphinx-testing',
     packages=find_packages('src'),
     package_dir={'': 'src'},
