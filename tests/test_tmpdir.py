@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import shutil
+from sphinx_testing.path import path
+from sphinx_testing.tmpdir import mkdtemp, with_tmpdir
+
 if sys.version_info < (2, 7):
     import unittest2 as unittest
 else:
     import unittest
-
-import shutil
-from sphinx_testing.path import path
-from sphinx_testing.tmpdir import mkdtemp, with_tmpdir
 
 
 class TestTmpdir(unittest.TestCase):
