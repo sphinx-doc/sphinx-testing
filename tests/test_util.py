@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import os
 import sys
+import sphinx
+from six import StringIO
+from sphinx_testing.path import path
+from sphinx_testing.tmpdir import mkdtemp
+from sphinx_testing.util import TestApp, with_app
+
 if sys.version_info < (2, 7):
     import unittest2 as unittest
 else:
@@ -13,13 +20,6 @@ if sys.version_info < (3, 3):
     from mock import patch
 else:
     from unittest.mock import patch
-
-import os
-import sphinx
-from six import StringIO
-from sphinx_testing.path import path
-from sphinx_testing.tmpdir import mkdtemp
-from sphinx_testing.util import TestApp, with_app
 
 
 class TestSphinxTesting(unittest.TestCase):

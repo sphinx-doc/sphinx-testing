@@ -4,14 +4,16 @@ env:
   matrix:
     - TOXENV=py26
     - TOXENV=py27
-    - TOXENV=py32
     - TOXENV=py33
     - TOXENV=py34
     - TOXENV=sphinx06
     - TOXENV=sphinx10
     - TOXENV=sphinx11
     - TOXENV=sphinx12
+    - TOXENV=sphinx13
+    - TOXENV=sphinx14
+    - TOXENV=sphinx15
     - TOXENV=coverage
 
-install: pip install docutils tox
+install: pip install docutils==0.12 tox
 script: tox
