@@ -10,11 +10,11 @@ sphinx-testing
 .. image:: https://coveralls.io/repos/sphinx-doc/sphinx-testing/badge.png?branch=master
    :target: https://coveralls.io/r/sphinx-doc/sphinx-testing?branch=master
 
-.. image:: https://pypip.in/d/sphinx-testing/badge.png
+.. image:: https://img.shields.io/pypi/dm/sphinx-testing.svg
    :target: https://pypi.python.org/pypi/sphinx-testing/
    :alt: Number of PyPI downloads
 
-.. image:: https://pypip.in/wheel/sphinx-testing/badge.png
+.. image:: https://img.shields.io/pypi/wheel/sphinx-testing.svg
    :target: https://pypi.python.org/pypi/sphinx-testing/
    :alt: Wheel Status
 
