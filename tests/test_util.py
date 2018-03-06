@@ -96,30 +96,24 @@ class TestSphinxTesting(unittest.TestCase):
         app = TestApp(create_new_srcdir=True)
         self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.theming.Theme") as Theme:
-            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
-                app.cleanup()
-                self.assertEqual(1, Theme.themes.clear.call_count)
-                self.assertEqual(1, AutoDirective._registry.clear.call_count)
-                self.assertFalse(app.builddir.exists())
+        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+            app.cleanup()
+            self.assertEqual(1, AutoDirective._registry.clear.call_count)
+            self.assertFalse(app.builddir.exists())
 
     def test_TestApp_cleanup_when_cleanup_on_errors(self):
         app = TestApp(create_new_srcdir=True, cleanup_on_errors=False)
         self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.theming.Theme") as Theme:
-            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
-                app.cleanup(error=True)
-                self.assertEqual(0, Theme.themes.clear.call_count)
-                self.assertEqual(0, AutoDirective._registry.clear.call_count)
-                self.assertTrue(app.builddir.exists())
+        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+            app.cleanup(error=True)
+            self.assertEqual(0, AutoDirective._registry.clear.call_count)
+            self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.theming.Theme") as Theme:
-            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
-                app.cleanup(error=None)
-                self.assertEqual(1, Theme.themes.clear.call_count)
-                self.assertEqual(1, AutoDirective._registry.clear.call_count)
-                self.assertFalse(app.builddir.exists())
+        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+            app.cleanup(error=None)
+            self.assertEqual(1, AutoDirective._registry.clear.call_count)
+            self.assertFalse(app.builddir.exists())
 
     def test_with_app(self):
         srcdir = path(__file__).dirname() / 'examples'
