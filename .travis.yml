@@ -1,19 +1,38 @@
 language: python
-python: 2.7
-env:
-  matrix:
-    - TOXENV=py26
-    - TOXENV=py27
-    - TOXENV=py33
-    - TOXENV=py34
-    - TOXENV=sphinx06
-    - TOXENV=sphinx10
-    - TOXENV=sphinx11
-    - TOXENV=sphinx12
-    - TOXENV=sphinx13
-    - TOXENV=sphinx14
-    - TOXENV=sphinx15
-    - TOXENV=coverage
+sudo: false
+dist: trusty
+cache: pip
+
+matrix:
+  include:
+    - python: 2.6
+      env: TOXENV=py26
+    - python: 2.7
+      env: TOXENV=py27
+    - python: 3.3
+      env: TOXENV=py33
+    - python: 3.4
+      env: TOXENV=py34
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 2.7
+      env: TOXENV=sphinx06
+    - python: 2.7
+      env: TOXENV=sphinx10
+    - python: 3.6
+      env: TOXENV=sphinx11
+    - python: 3.6
+      env: TOXENV=sphinx12
+    - python: 3.6
+      env: TOXENV=sphinx13
+    - python: 3.6
+      env: TOXENV=sphinx14
+    - python: 3.6
+      env: TOXENV=sphinx15
+    - python: 3.6
+      env: TOXENV=sphinx16
 
 install: pip install docutils==0.12 tox
 script: tox
