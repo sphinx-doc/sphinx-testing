@@ -41,7 +41,7 @@ Example::
 
 Requirements
 ============
-* Python 2.6, 2.7, 3.2 or later
+* Python 2.6, 2.7, 3.4 or later
 * Sphinx 0.6 or later
 * six
 
