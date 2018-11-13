@@ -7,11 +7,13 @@
     :license: BSD, see LICENSE for details.
 """
 
+import os.path
 import shutil
 from six import StringIO
 from functools import wraps
 from textwrap import dedent
 
+import sphinx.application
 from sphinx import __version__ as sphinx_version
 from sphinx.application import Sphinx
 from sphinx_testing.path import path
@@ -72,15 +74,19 @@ class TestApp(Sphinx):
         if warning is None:
             warning = StringIO()
 
-        if sphinx_version < '1.3':
-            Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
-                            buildername, confoverrides, status,
-                            warning, freshenv, warningiserror, tags)
-        else:
-            Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
-                            buildername, confoverrides, status,
-                            warning, freshenv, warningiserror, tags,
-                            verbosity, parallel)
+        try:
+            sphinx.application.abspath = lambda x: x
+            if sphinx_version < '1.3':
+                Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
+                                buildername, confoverrides, status,
+                                warning, freshenv, warningiserror, tags)
+            else:
+                Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
+                                buildername, confoverrides, status,
+                                warning, freshenv, warningiserror, tags,
+                                verbosity, parallel)
+        finally:
+            sphinx.application.abspath = os.path.abspath
 
     def __repr__(self):
         classname = self.__class__.__name__
@@ -119,6 +125,8 @@ class with_app(object):
             if self._write_docstring is True:
                 if isinstance(app.config.source_suffix, (list, tuple)):
                     source_suffix = app.config.source_suffix[0]
+                elif isinstance(app.config.source_suffix, dict):
+                    source_suffix = app.config.source_suffix.keys()[0]
                 else:
                     source_suffix = app.config.source_suffix
                 basename = '%s%s' % (app.config.master_doc, source_suffix)
