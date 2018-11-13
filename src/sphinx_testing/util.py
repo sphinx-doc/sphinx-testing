@@ -126,7 +126,7 @@ class with_app(object):
                 if isinstance(app.config.source_suffix, (list, tuple)):
                     source_suffix = app.config.source_suffix[0]
                 elif isinstance(app.config.source_suffix, dict):
-                    source_suffix = app.config.source_suffix.keys()[0]
+                    source_suffix = list(app.config.source_suffix)[0]
                 else:
                     source_suffix = app.config.source_suffix
                 basename = '%s%s' % (app.config.master_doc, source_suffix)
