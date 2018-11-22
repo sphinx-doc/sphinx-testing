@@ -19,6 +19,16 @@ from sphinx.application import Sphinx
 from sphinx_testing.path import path
 from sphinx_testing.tmpdir import mkdtemp
 
+try:
+    from sphinx.util.docutils import docutils_namespace
+except ImportError:
+    # workaround for Sphinx-1.4 and older versions
+    from contextlib import contextmanager
+
+    @contextmanager
+    def docutils_namespace():
+        yield
+
 
 class TestApp(Sphinx):
     """
@@ -142,20 +152,21 @@ class with_app(object):
             app = None
             exc = None
             sphinxkwargs = dict(self.sphinxkwargs)  # create copy
-            try:
-                status = sphinxkwargs.setdefault('status', StringIO())
-                warning = sphinxkwargs.setdefault('warning', StringIO())
-                app = TestApp(*self.sphinxargs, **sphinxkwargs)
-                self.write_docstring(app, func.__doc__)
+            with docutils_namespace():
+                try:
+                    status = sphinxkwargs.setdefault('status', StringIO())
+                    warning = sphinxkwargs.setdefault('warning', StringIO())
+                    app = TestApp(*self.sphinxargs, **sphinxkwargs)
+                    self.write_docstring(app, func.__doc__)
 
-                func(*(args + (app, status, warning)), **kwargs)
-            except Exception as _exc:
-                exc = _exc
-                raise
-            finally:
-                if app:
-                    if exc:
-                        app.cleanup(error=exc)
-                    else:
-                        app.cleanup()
+                    func(*(args + (app, status, warning)), **kwargs)
+                except Exception as _exc:
+                    exc = _exc
+                    raise
+                finally:
+                    if app:
+                        if exc:
+                            app.cleanup(error=exc)
+                        else:
+                            app.cleanup()
         return decorator
