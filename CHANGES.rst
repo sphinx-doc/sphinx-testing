@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+0.8.1 (2018-11-24)
+-------------------
+- Fix a bug:
+
+  - #9: warningiserror=True is broken with Sphinx 1.8.2
+
 0.8.0 (2018-11-13)
 -------------------
 - Drop py33 support
