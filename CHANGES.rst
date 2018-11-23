@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+0.8.0 (2018-11-13)
+-------------------
+- Drop py33 support
+- Fix bug:
+
+  - #8: Tests are failing with Sphinx 1.8.2
+
 0.7.2 (2017-05-03)
 -------------------
 - Fix bug:
