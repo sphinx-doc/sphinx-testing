@@ -159,7 +159,7 @@ class with_app(object):
                     app = TestApp(*self.sphinxargs, **sphinxkwargs)
                     self.write_docstring(app, func.__doc__)
 
-                    func(*(args + (app, status, warning)), **kwargs)
+                    return func(*(args + (app, status, warning)), **kwargs)
                 except Exception as _exc:
                     exc = _exc
                     raise

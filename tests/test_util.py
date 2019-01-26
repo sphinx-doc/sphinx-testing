@@ -190,3 +190,12 @@ class TestSphinxTesting(unittest.TestCase):
             self.assertEqual('Hello world ', content)
 
         execute()
+
+    def test_with_app_return_value(self):
+        @with_app(create_new_srcdir=True)
+        def execute(ret, app, status, warning):
+            return ret
+
+        s = 'What goes in, must come out'
+
+        self.assertEqual(execute(s), s)
