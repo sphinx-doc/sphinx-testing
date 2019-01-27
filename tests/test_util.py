@@ -96,7 +96,7 @@ class TestSphinxTesting(unittest.TestCase):
         app = TestApp(create_new_srcdir=True)
         self.assertTrue(app.builddir.exists())
 
-        if sphinx.version_info < (2, 0):
+        if sphinx.__version__ < '2.0':
             with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
                 app.cleanup()
                 self.assertEqual(1, AutoDirective._registry.clear.call_count)
@@ -109,7 +109,7 @@ class TestSphinxTesting(unittest.TestCase):
         app = TestApp(create_new_srcdir=True, cleanup_on_errors=False)
         self.assertTrue(app.builddir.exists())
 
-        if sphinx.version_info < (2, 0):
+        if sphinx.__version__ < '2.0':
             with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
                 app.cleanup(error=True)
                 self.assertEqual(0, AutoDirective._registry.clear.call_count)
@@ -118,7 +118,7 @@ class TestSphinxTesting(unittest.TestCase):
             app.cleanup(error=True)
             self.assertTrue(app.builddir.exists())
 
-        if sphinx.version_info < (2, 0):
+        if sphinx.__version__ < '2.0':
             with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
                 app.cleanup(error=None)
                 self.assertEqual(1, AutoDirective._registry.clear.call_count)
