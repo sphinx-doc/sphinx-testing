@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+1.0.0 (2019-01-27)
+-------------------
+- Support Sphinx-2.0 (unreleased yet)
+- Fix a bug:
+
+  - #12: @with_app decorator should return the value of the decorated function
+
 0.8.1 (2018-11-24)
 -------------------
 - Fix a bug:

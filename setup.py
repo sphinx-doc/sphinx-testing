@@ -36,7 +36,7 @@ if sys.version_info < (3, 3):
 
 setup(
     name='sphinx-testing',
-    version='0.8.1',
+    version='1.0.0',
     description=description,
     long_description=description,
     classifiers=classifiers,
