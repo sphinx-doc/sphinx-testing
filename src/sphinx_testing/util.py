@@ -110,8 +110,12 @@ class TestApp(Sphinx):
             from sphinx.theming import Theme
             Theme.themes.clear()
 
-        from sphinx.ext.autodoc import AutoDirective
-        AutoDirective._registry.clear()
+        try:
+            from sphinx.ext.autodoc import AutoDirective
+            AutoDirective._registry.clear()
+        except ImportError:
+            pass  # Sphinx-2.0+ does not have AutoDirective and its cache
+
         for tree in self.cleanup_trees:
             shutil.rmtree(tree, True)
 

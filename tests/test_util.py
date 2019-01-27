@@ -96,23 +96,35 @@ class TestSphinxTesting(unittest.TestCase):
         app = TestApp(create_new_srcdir=True)
         self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+        if sphinx.version_info < (2, 0):
+            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+                app.cleanup()
+                self.assertEqual(1, AutoDirective._registry.clear.call_count)
+                self.assertFalse(app.builddir.exists())
+        else:
             app.cleanup()
-            self.assertEqual(1, AutoDirective._registry.clear.call_count)
             self.assertFalse(app.builddir.exists())
 
     def test_TestApp_cleanup_when_cleanup_on_errors(self):
         app = TestApp(create_new_srcdir=True, cleanup_on_errors=False)
         self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+        if sphinx.version_info < (2, 0):
+            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+                app.cleanup(error=True)
+                self.assertEqual(0, AutoDirective._registry.clear.call_count)
+                self.assertTrue(app.builddir.exists())
+        else:
             app.cleanup(error=True)
-            self.assertEqual(0, AutoDirective._registry.clear.call_count)
             self.assertTrue(app.builddir.exists())
 
-        with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+        if sphinx.version_info < (2, 0):
+            with patch("sphinx.ext.autodoc.AutoDirective") as AutoDirective:
+                app.cleanup(error=None)
+                self.assertEqual(1, AutoDirective._registry.clear.call_count)
+                self.assertFalse(app.builddir.exists())
+        else:
             app.cleanup(error=None)
-            self.assertEqual(1, AutoDirective._registry.clear.call_count)
             self.assertFalse(app.builddir.exists())
 
     def test_with_app(self):
@@ -157,8 +169,8 @@ class TestSphinxTesting(unittest.TestCase):
         @with_app(create_new_srcdir=True, write_docstring=True)
         def execute(app, status, warning):
             """ Hello world """
-            content = (app.srcdir / 'contents.rst').read_text()
-            self.assertEqual('Hello world ', content)
+            master_doc = (app.srcdir / (app.config.master_doc + '.rst'))
+            self.assertEqual('Hello world ', master_doc.read_text())
 
         execute()
 
@@ -177,8 +189,8 @@ class TestSphinxTesting(unittest.TestCase):
                   confoverrides={'source_suffix': '.txt'})
         def execute(app, status, warning):
             """ Hello world """
-            content = (app.srcdir / 'contents.txt').read_text()
-            self.assertEqual('Hello world ', content)
+            master_doc = (app.srcdir / (app.config.master_doc + '.txt'))
+            self.assertEqual('Hello world ', master_doc.read_text())
 
         execute()
 

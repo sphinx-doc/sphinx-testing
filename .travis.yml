@@ -35,6 +35,8 @@ matrix:
       env: TOXENV=sphinx17
     - python: 3.6
       env: TOXENV=sphinx18
+    - python: 3.6
+      env: TOXENV=sphinx-dev
 
 install: pip install docutils==0.12 tox
 script: tox
