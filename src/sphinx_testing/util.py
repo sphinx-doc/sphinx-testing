@@ -3,7 +3,7 @@
     Sphinx test suite utilities
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2007-2014 by the Sphinx team, see Sphinx-AUTHORS.
+    :copyright: Copyright 2007-2019 by the Sphinx team, see Sphinx-AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 

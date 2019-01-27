@@ -3,7 +3,7 @@
     tmpdir utilities
     ~~~~~~~~~~~~~~~~
 
-    :copyright: Copyright 2007-2014 by Takeshi KOMIYA
+    :copyright: Copyright 2007-2019 by Takeshi KOMIYA
     :license: BSD, see LICENSE for details.
 """
 
