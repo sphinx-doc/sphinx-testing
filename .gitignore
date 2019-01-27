@@ -4,6 +4,7 @@
 __pycache__
 
 .coverage
+.mypy_cache/
 .tox/
 dist/
 bin/
