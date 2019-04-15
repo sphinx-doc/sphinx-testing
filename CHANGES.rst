@@ -1,6 +1,10 @@
 Changelog
 ==========
 
+1.0.1 (unreleased)
+-------------------
+- Support Sphinx-2.0.1
+
 1.0.0 (2019-01-27)
 -------------------
 - Support Sphinx-2.0 (unreleased yet)

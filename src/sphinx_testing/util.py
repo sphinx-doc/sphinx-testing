@@ -84,8 +84,13 @@ class TestApp(Sphinx):
         if warning is None:
             warning = StringIO()
 
+        # unwrap ModuleWrapper (deprecated_alias)
+        application = sphinx.application
+        while hasattr(application, '_module'):
+            application = application._module
+
         try:
-            sphinx.application.abspath = lambda x: x
+            application.abspath = lambda x: x
             if sphinx_version < '1.3':
                 Sphinx.__init__(self, srcdir, confdir, outdir, doctreedir,
                                 buildername, confoverrides, status,
@@ -96,7 +101,7 @@ class TestApp(Sphinx):
                                 warning, freshenv, warningiserror, tags,
                                 verbosity, parallel)
         finally:
-            sphinx.application.abspath = os.path.abspath
+            application.abspath = os.path.abspath
 
     def __repr__(self):
         classname = self.__class__.__name__
