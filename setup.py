@@ -1,6 +1,9 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import sys
+
 from setuptools import setup, find_packages
+
 
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -25,20 +28,25 @@ classifiers = [
     "Topic :: Text Processing :: Markup",
     "Topic :: Utilities",
 ]
-description = 'testing utility classes and functions for Sphinx extensions'
 
 test_require = []
 if sys.version_info < (2, 7):
     test_require.append('unittest2')
-
 if sys.version_info < (3, 3):
     test_require.append('mock')
+
+with open('README.rst') as readme:
+    long_description = readme.read()
+long_description += '\n\n'
+with open('CHANGES.rst') as changes:
+    long_description += changes.read()
+
 
 setup(
     name='sphinx-testing',
     version='1.0.1',
-    description=description,
-    long_description=description,
+    description='Testing utility classes and functions for Sphinx extensions',
+    long_description=long_description,
     classifiers=classifiers,
     keywords=['sphinx', 'testing'],
     author='Takeshi Komiya',
@@ -52,4 +60,5 @@ setup(
         'six',
     ],
     tests_require=test_require,
+    python_requires='>=2.6,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*',
 )
