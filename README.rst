@@ -18,6 +18,12 @@ sphinx-testing
    :target: https://pypi.python.org/pypi/sphinx-testing/
    :alt: Wheel Status
 
+.. important::
+
+   This package has been deprecated. Please use `sphinx.testing`_ package instead. It is bundled with Sphinx.
+
+   .. _sphinx.testing: https://www.sphinx-doc.org/en/master/devguide.html#unit-testing
+
 Setup
 =====
 
