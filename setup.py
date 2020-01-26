@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import sys
-
 from setuptools import setup, find_packages
 
 
@@ -14,11 +12,10 @@ classifiers = [
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 2.6",
-    "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3.4",
     "Programming Language :: Python :: 3.5",
     "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Topic :: Documentation",
     "Topic :: Documentation :: Sphinx",
     "Topic :: Software Development",
@@ -27,12 +24,6 @@ classifiers = [
     "Topic :: Text Processing :: Markup",
     "Topic :: Utilities",
 ]
-
-test_require = []
-if sys.version_info < (2, 7):
-    test_require.append('unittest2')
-if sys.version_info < (3, 3):
-    test_require.append('mock')
 
 with open('README.rst') as readme:
     long_description = readme.read()
@@ -56,8 +47,6 @@ setup(
     include_package_data=True,
     install_requires=[
         'Sphinx',
-        'six',
     ],
-    tests_require=test_require,
-    python_requires='>=2.6,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*',
+    python_requires='>=3.5',
 )

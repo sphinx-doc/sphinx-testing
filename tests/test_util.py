@@ -1,25 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 import sphinx
-from six import StringIO
+import unittest
+from io import StringIO
+from unittest.mock import patch
 from sphinx_testing.path import path
 from sphinx_testing.tmpdir import mkdtemp
 from sphinx_testing.util import TestApp, with_app
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
-
-if sys.version_info < (3,):
-    unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
-
-if sys.version_info < (3, 3):
-    from mock import patch
-else:
-    from unittest.mock import patch
 
 
 class TestSphinxTesting(unittest.TestCase):

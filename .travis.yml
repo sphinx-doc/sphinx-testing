@@ -1,24 +1,18 @@
 language: python
 sudo: false
-dist: trusty
+dist: xenial
 cache: pip
 
 matrix:
   include:
-    - python: 2.6
-      env: TOXENV=py26
-    - python: 2.7
-      env: TOXENV=py27
-    - python: 3.4
-      env: TOXENV=py34
     - python: 3.5
       env: TOXENV=py35
     - python: 3.6
       env: TOXENV=py36
-    - python: 2.7
-      env: TOXENV=sphinx06
-    - python: 2.7
-      env: TOXENV=sphinx10
+    - python: 3.7
+      env: TOXENV=py37
+    - python: 3.8
+      env: TOXENV=py38
     - python: 3.6
       env: TOXENV=sphinx11
     - python: 3.6
@@ -38,5 +32,5 @@ matrix:
     - python: 3.6
       env: TOXENV=sphinx-dev
 
-install: pip install docutils==0.12 tox
+install: pip install docutils tox
 script: tox

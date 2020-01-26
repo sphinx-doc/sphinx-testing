@@ -1,19 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import os
-import sys
 import shutil
+import unittest
 from tempfile import mkdtemp
 from sphinx_testing import with_tmpdir
 from sphinx_testing.path import path
-
-if sys.version_info < (2, 7):
-    import unittest2 as unittest
-else:
-    import unittest
-
-if sys.version_info < (3,):
-    unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
 
 
 class TestPath(unittest.TestCase):
