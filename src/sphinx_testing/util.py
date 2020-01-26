@@ -9,7 +9,7 @@
 
 import os.path
 import shutil
-from six import StringIO
+from io import StringIO
 from functools import wraps
 from textwrap import dedent
 
